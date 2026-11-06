@@ -1,7 +1,7 @@
 # BÍBLIA DO PROJETO — CUTE 3D
 
 > Fonte principal de continuidade do projeto. Sempre ler este arquivo **antes de programar** e atualizá-lo **após cada etapa comprovada**.
-> Atualizado em: 2026-11-06. Estado: estrutura inicial criada localmente. Publicação remota do repositório: **pendente**.
+> Atualizado em: 2026-11-06. Estado: estrutura inicial publicada no GitHub, com cena Godot e plugin MCP versionados. Próximo passo: conexão MCP em tempo real e primeiro protótipo jogável.
 
 ## 1. Identidade e visão
 
@@ -15,10 +15,10 @@
 
 ## 2. Repositório e caminhos
 
-- **Nome solicitado no GitHub:** cute 3d. **Slug técnico pretendido:** `cute-3d` (GitHub não utiliza espaços nos nomes de URL).
+- **Nome solicitado no GitHub:** cute 3d. **Nome do repositório:** `cute-3d` (GitHub não utiliza espaços nos nomes de URL).
 - **Proprietário pretendido:** `arturcoutinhoescrita-netizen`.
-- **URL pretendida (NÃO CONSIDERAR CRIADA até confirmar):** `https://github.com/arturcoutinhoescrita-netizen/cute-3d`.
-- **Situação GitHub:** pendente de criação/publicação por ferramenta com permissão apropriada.
+- **URL confirmada:** `https://github.com/arturcoutinhoescrita-netizen/cute-3d`.
+- **Situação GitHub:** criado, público, branch `main`, 74 arquivos publicados e conferidos em 2026-11-06.
 - **Pasta local:** `/Volumes/Extreme SSD/MEUS JOGOS/Godot/Cute 3D`.
 - **Cena inicial:** `res://cenas/principal.tscn`.
 - **Bíblia:** `res://documentacao/BIBLIA_DO_PROJETO.md`.
@@ -36,11 +36,11 @@ O que foi preparado em 2026-11-06:
 5. Criado `project.godot`, cena inicial com chão, luz, câmera e ambiente, e plugin Godot MCP incluído e habilitado.
 6. Criada esta bíblia e uma estrutura mínima para versionamento.
 7. **Testes realizados:** Godot abriu o projeto em modo editor headless (exit 0), iniciou o plugin Godot MCP, registrou 173 comandos e encerrou normalmente. A cena principal também iniciou em modo headless (exit 0). A conexão MCP externa e a inspeção visual ainda estão pendentes.
-8. **GitHub:** remoto ainda não criado. Repositório Git local inicializado em `main`; commit inicial `65bf56b`. Godot aberto no Mac pelo Desktop Commander.
+8. **GitHub:** repositório `cute-3d` publicado; arquivos conferidos na `main` no commit `7f4b062`. Árvore Git local e remota idênticas na conferência de 2026-11-06. Godot aberto no Mac pelo Desktop Commander.
 
 ### Próxima ação prioritária
 - Validar a abertura do projeto no Godot e a integração MCP.
-- Criar o repositório privado `cute-3d` no GitHub e enviar esta estrutura após autenticação adequada.
+- Manter a bíblia no GitHub atualizada e confirmar integração MCP em tempo real. O repositório foi criado como **público**; alterar a visibilidade apenas se solicitado.
 - Definir com a direção criativa o primeiro pequeno marco jogável (ex.: personagem movimentável numa área de teste).
 
 ## 4. Princípios de produção
@@ -131,6 +131,15 @@ Nenhuma dessas decisões deve ser presumida apenas a partir de protótipos anter
 - **Arquivos alterados:** `project.godot`, `cenas/principal.tscn`, `addons/godot_mcp/`, documentação.
 - **Implementação:** cena com chão de teste, luz direcional, câmera e ambiente; plugin MCP configurado.
 - **Validação realizada:** editor headless exit 0, log `[Godot MCP] Plugin started` e `Registered 173 commands`; runtime headless exit 0.
-- **Limitações/problemas:** não houve teste visual, nem confirmação de canal MCP externo aberto; repositório remoto GitHub ainda não criado.
+- **Limitações/problemas:** não houve teste visual nem confirmação de canal MCP externo aberto. Publicação remota concluída depois desta validação.
 - **Commit/branch:** primeiro commit local `65bf56b` na branch `main`; atualização posterior da bíblia ainda sem commit.
 - **Próximo passo:** publicação privada do repo e primeira definição criativa do personagem/câmera.
+
+### 2026-11-06 — Repositório GitHub confirmado e publicado
+- **Objetivo:** disponibilizar o projeto e esta bíblia como referência durável.
+- **Arquivos alterados:** todos os 74 arquivos de código, cena, documentação e Godot MCP foram publicados no repositório; esta bíblia foi atualizada com o estado remoto.
+- **Implementação:** publicação no GitHub por integração autorizada, sem depender da autenticação Git local.
+- **Validação realizada:** `README.md`, `project.godot`, `cenas/principal.tscn`, `addons/godot_mcp/plugin.cfg` e esta bíblia confirmados no GitHub. As árvores Git local e remota foram comparadas e são idênticas antes desta atualização documental.
+- **Limitações/problemas:** ainda falta testar o MCP conectado em tempo real e validar visualmente a cena inicial.
+- **Commit/branch:** `main`, publicação inicial remota `7f4b062`. A atualização desta bíblia gera novo commit remoto.
+- **Próximo passo:** primeiro marco jogável com personagem e câmera a definir.
