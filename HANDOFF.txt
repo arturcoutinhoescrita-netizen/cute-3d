@@ -1,6 +1,6 @@
 CUTE 3D — HANDOFF / CONTINUIDADE
 Atualizado: 06/11/2026
-ESTADO: P1 — PROTÓTIPO DO CARTEIRO IMPLEMENTADO NO MAC; VALIDAÇÃO PELO CRIADOR PENDENTE
+ESTADO: P1 — ORIENTAÇÃO E MATERIAL DO CARTEIRO CORRIGIDOS NO MAC; REAVALIAÇÃO MANUAL PELO CRIADOR PENDENTE
 
 LEIA PRIMEIRO
 Este arquivo é o registro vivo da produção. Ao voltar para o projeto, o assistente deve consultá-lo antes de editar o jogo. PROJETO.txt define a visão e as regras permanentes; este HANDOFF registra o ponto exato de retomada.
@@ -48,12 +48,12 @@ A sessão de 06/11/2026 implementou o Carteiro e testou o controlador em Godot. 
 - O projeto local permanece intacto. Evitar configurar origin do Git local apontando para o repositório de documentação.
 
 6. O QUE FALTA (PRÓXIMO MARCO)
-1) Pedir ao criador para executar F5 no Godot e avaliar visualmente o Carteiro, a câmera e a sensação de caminhada/corrida.
-2) Ajustar conforme feedback do criador: velocidade, tamanho, orientação, câmera, transições e materiais.
-3) Verificar em sessão posterior conexão MCP externa realmente ativa (plugin iniciado não significa canal MCP conectado).
-4) Não adicionar mecânicas além do escopo pedido sem discussão.
-5) Reexecutar os testes de movimento após mudanças.
-6) Continuar guardando todos os recursos de jogo exclusivamente no Mac.
+1) Solicitar ao criador que PARE a execução atual no Godot e pressione F5 novamente: a instância antiga do jogo pode manter arquivos em memória.
+2) Confirmar na nova execução: W move o Carteiro PARA A FRENTE, S para trás, A/D para os lados; o rosto deve acompanhar a direção do movimento; as roupas e o rosto devem aparecer coloridos e não pretos.
+3) Se ainda houver diferença em relação ao comportamento desejado, investigar input físico/câmera com a cena atual, sem desfazer a correção já testada.
+4) Rever como o personagem se comporta ao jogar e, se aprovado, avançar ao cenário e RPG.
+5) Verificar conexão MCP externa (plugin iniciado não comprova conexão).
+6) Todo código, modelo, textura e cena permanecem exclusivamente no Mac; no GitHub, manter somente PROJETO.txt e HANDOFF.txt.
 
 7. DECISÕES CONFIRMADAS
 - 06/11/2026: jogo novo em Godot.
@@ -122,3 +122,26 @@ Resultados validados em 06/11/2026:
 Limitações/pendências: teste manual de jogabilidade pela pessoa criadora e aprovação da estética/câmera; não foi demonstrada conexão MCP externa. O controle de salto foi implementado, mas não consta entre as 11 verificações automáticas, então salto exige teste adicional. A animação Dwarf Idle é uma escolha inicial e pode ser alterada.
 Registro Git LOCAL: branch main, commit ecbeb30 'feat(local): add animated Carteiro with third-person movement'. Status limpo; SEM remoto configurado; NÃO publicar arquivos do jogo no GitHub.
 Próxima ação sugerida: instruir usuário a focar a janela do Godot e pressionar F5 para jogar com WASD e Shift; obter feedback da aparência do Carteiro, tamanho e câmera.
+
+
+13. REGISTRO DETALHADO — 06/11/2026: CORREÇÃO DE DIREÇÃO E PERSONAGEM PRETO
+Relato do criador: o Carteiro parecia andar de costas e a movimentação parecia errada em todas as direções. O personagem aparecia preto na tela.
+Diagnóstico comprovado:
+- Na importação, a FRENTE visual do FBX está no eixo +Z; o controlador Godot trata -Z como frente. Antes da correção, a câmera via o rosto do Carteiro em vez de suas costas. Girar somente o corpo de colisão NÃO resolveria; corrigir a orientação da malha.
+- Foi descoberto um erro de serialização na cena durante a tentativa de correção: comentários iniciados por '#' DENTRO do arquivo .tscn eram interpretados como parte do nome da propriedade seguinte. O SceneState mostrava a propriedade inválida '#OFBX...rotation', e a rotação real permanecia zero! Remover esse comentário permite que 'rotation = Vector3(0, 3.14159265, 0)' seja realmente aplicada. Em arquivos .tscn, não colocar comentários '#' dentro da seção da cena.
+- Material GLB importado estava em StandardMaterial3D.metallic = 1.0 e roughness = 1.0, dando aparência preta em iluminação sem reflexos adequados. Também vinha com cull_mode = CULL_DISABLED e normal map associado a manchas/artefatos. Material do Carteiro não deve ser metálico nem renderizar faces traseiras sobre a frente.
+Correção executada SOMENTE NO MAC:
+- res://cenas/carteiro.tscn: 'Orientacao' fixa em 180 graus Y; instância da malha usa material sobreposto específico.
+- res://materiais/carteiro.tres: DUPLICADO a partir do material importado, mantendo albedo_texture original. metallic=0, roughness=0.85, normal_enabled=false e cull_mode=CULL_BACK. NÃO modificou o GLB ou as imagens originais.
+- res://scripts/carteiro_controle.gd: eixos da câmera e Input.get_vector documentados explicitamente, mantendo movimento relativo à câmera.
+- res://testes/teste_carteiro.gd: acrescidos testes para W/S/A/D, alinhamento do rosto ao movimento, câmera girada 90 graus e inspeção do material e tecla W.
+- res://testes/capturas/carteiro_parado.png: atualizada com captura do viewport do Godot. Agora mostra as COSTAS do Carteiro (câmera atrás) e suas roupas coloridas.
+Validação:
+- Inspeção do material em execução: metallic=0.0, roughness=0.85, cull_mode=CULL_BACK, normal_enabled=false, textura albedo de 4096×4096 mantida.
+- Godot carregou nova orientação: Orientacao.rotation_degrees=(0,180,0); antes era (0,0,0).
+- Captura visual nova: modelo visível, sem material preto, visto de costas em terceira pessoa.
+- Testes automatizados: 27/27 APROVADOS, execução headless saiu com status 0. Movimentos testados: W desloca -Z; S +Z; A -X; D +X; rotação da câmera de +90 graus faz W deslocar -X; em todos, o eixo do rosto fica alinhado ao deslocamento. Corrida e animações de repouso/andar/correr mantidas.
+- Validação manual do criador na janela de jogo ainda PENDENTE; reiniciar o jogo via botão Parar e F5 para evitar instância antiga em memória.
+Commit Git LOCAL: b7607f53a7895d9d2afad1097eb298e1c0a46f9d 'fix(local): align Carteiro movement and correct dark imported material'. NENHUM código foi enviado ao GitHub.
+Observação sobre status local: 2 arquivos .png.import gerados pelo Godot estavam modificados e testes/capturas/carteiro_parado.png.import foi criado automaticamente; deixados sem staging/commit, não sobrescrever sem inspecionar. O remoto origin continua ausente do Git local.
+Próximo passo: perguntar ao criador se a nova execução realmente corrige o movimento e a cor do Carteiro; depois aperfeiçoar o jogo conforme feedback.
