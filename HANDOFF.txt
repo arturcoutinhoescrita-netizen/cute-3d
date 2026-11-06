@@ -1,6 +1,6 @@
 CUTE 3D — HANDOFF / CONTINUIDADE
 Atualizado: 06/11/2026
-ESTADO: P0 — FUNDAÇÃO EM ANDAMENTO
+ESTADO: P1 — PROTÓTIPO DO CARTEIRO IMPLEMENTADO NO MAC; VALIDAÇÃO PELO CRIADOR PENDENTE
 
 LEIA PRIMEIRO
 Este arquivo é o registro vivo da produção. Ao voltar para o projeto, o assistente deve consultá-lo antes de editar o jogo. PROJETO.txt define a visão e as regras permanentes; este HANDOFF registra o ponto exato de retomada.
@@ -38,7 +38,7 @@ Não migrar automaticamente 3D Companion para Cute 3D. A existência de plugins 
 - Godot --headless --editor --quit carregou o novo projeto com saída 0.
 - Log do plugin: '[Godot MCP] Plugin started' e 'Registered 173 commands'.
 - Godot --headless --quit-after 5 executou a cena com saída 0.
-Não comprovados: conexão MCP externa ativa, teste visual da cena, controle de personagem, gameplay real.
+A sessão de 06/11/2026 implementou o Carteiro e testou o controlador em Godot. A comunicação MCP externa continua não comprovada; controles no editor devem ser experimentados pela pessoa criadora.
 
 5. SITUAÇÃO DO GITHUB
 - O repositório cute-3d foi criado como PÚBLICO em 06/11/2026.
@@ -48,11 +48,12 @@ Não comprovados: conexão MCP externa ativa, teste visual da cena, controle de 
 - O projeto local permanece intacto. Evitar configurar origin do Git local apontando para o repositório de documentação.
 
 6. O QUE FALTA (PRÓXIMO MARCO)
-1) Verificar que o Desktop Commander está conectado e que o Godot abre o projeto Cute 3D correto.
-2) Verificar integração Godot MCP de verdade (instalação do plugin não é o mesmo que servidor conectado).
-3) Confirmar cena inicial visualmente no Godot.
-4) Definir com o criador o primeiro protótipo jogável, em especial personagem e tipo de câmera.
-5) Criar o primeiro controlador de personagem em uma cena de teste, sem sobrescrever cenas autorais.
+1) Pedir ao criador para executar F5 no Godot e avaliar visualmente o Carteiro, a câmera e a sensação de caminhada/corrida.
+2) Ajustar conforme feedback do criador: velocidade, tamanho, orientação, câmera, transições e materiais.
+3) Verificar em sessão posterior conexão MCP externa realmente ativa (plugin iniciado não significa canal MCP conectado).
+4) Não adicionar mecânicas além do escopo pedido sem discussão.
+5) Reexecutar os testes de movimento após mudanças.
+6) Continuar guardando todos os recursos de jogo exclusivamente no Mac.
 
 7. DECISÕES CONFIRMADAS
 - 06/11/2026: jogo novo em Godot.
@@ -93,3 +94,31 @@ Próximo passo:
 11. REGISTRO DE ALTERAÇÕES
 06/11/2026 — Fundação: projeto Godot local inicial, plugin MCP e cena principal; inicialização headless aprovada, visual e comunicação MCP pendentes.
 06/11/2026 — Organização: documentação central no GitHub; conteúdo do jogo deve permanecer apenas no Mac; branch main contendo somente dois TXT. 
+
+12. REGISTRO DETALHADO — 06/11/2026: CARTEIRO JOGÁVEL
+Objetivo: montar personagem principal do RPG 3D no Godot e configurar caminhada e corrida a partir dos FBX autorais da pasta Carteiro.
+Arquivos de origem (NÃO ALTERADOS):
+- /Volumes/Extreme SSD/MEUS JOGOS/IMAGENS RPG/Photoshop tiles/3d/Carteiro/movimentação/Walking.fbx
+- /Volumes/Extreme SSD/MEUS JOGOS/IMAGENS RPG/Photoshop tiles/3d/Carteiro/movimentação/Running.fbx
+- /Volumes/Extreme SSD/MEUS JOGOS/IMAGENS RPG/Photoshop tiles/3d/Carteiro/movimentação/Dwarf Idle.fbx
+- Outros arquivos de referência e modelo original permanecem no local de origem.
+Constatação técnica: os três FBX animados contêm a mesma malha e rig Mixamo de 41 ossos; o FBX Tripo estático sem esqueleto não foi escolhido como base da animação.
+Construção: Blender 5.2.2 LTS utilizado em modo headless para exportar as três ações em um único GLB; as três animações aparecem no AnimationPlayer do Godot com os nomes Andar, Correr, Parado. O arquivo está em res://assets/personagens/carteiro/carteiro_animado.glb (somente no Mac).
+Arquivos locais criados ou modificados:
+- assets/personagens/carteiro/ (GLB, materiais/imagens importados e arquivos .import)
+- cenas/carteiro.tscn (CharacterBody3D, cápsula de colisão, modelo, câmera terceira pessoa com SpringArm3D)
+- scripts/carteiro_controle.gd (movimento relativo à câmera, gravidade, salto, alternância de animações, rotação suave)
+- cenas/principal.tscn (instância do Carteiro, terreno e instruções na tela)
+- testes/teste_carteiro.gd (teste de regressão de movimentação)
+- testes/capturas/carteiro_parado.png (captura visual de referência gerada localmente)
+- README.md local com instruções para abrir e testar.
+Controles atuais:
+WASD/setas = movimentar; Shift = correr; Espaço = pular; segurar botão direito e mover mouse = girar câmera. Câmera terceira pessoa é configuração inicial provisória.
+Resultados validados em 06/11/2026:
+- Godot 4.7.2 editor headless: inicialização/importação sem erros, saída 0.
+- Cena executada em headless com saída 0.
+- 11/11 verificações automatizadas aprovadas no teste: criação do CharacterBody3D, ações de controle, três animações, repouso inicial, colisão no chão, deslocamento caminhando (1,84 m), deslocamento correndo (3,89 m na mesma janela de tempo), troca para Andar e Correr, volta para Parado e colisão preservada.
+- Captura direta do viewport Godot mostra o Carteiro visível, em pé, diante da câmera e sobre o chão. Houve ajuste local de orientação/escala depois de constatar que inicialmente o personagem ficava pequeno ou fora do enquadramento.
+Limitações/pendências: teste manual de jogabilidade pela pessoa criadora e aprovação da estética/câmera; não foi demonstrada conexão MCP externa. O controle de salto foi implementado, mas não consta entre as 11 verificações automáticas, então salto exige teste adicional. A animação Dwarf Idle é uma escolha inicial e pode ser alterada.
+Registro Git LOCAL: branch main, commit ecbeb30 'feat(local): add animated Carteiro with third-person movement'. Status limpo; SEM remoto configurado; NÃO publicar arquivos do jogo no GitHub.
+Próxima ação sugerida: instruir usuário a focar a janela do Godot e pressionar F5 para jogar com WASD e Shift; obter feedback da aparência do Carteiro, tamanho e câmera.
