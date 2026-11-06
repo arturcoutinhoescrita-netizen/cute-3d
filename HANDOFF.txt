@@ -1,0 +1,95 @@
+CUTE 3D — HANDOFF / CONTINUIDADE
+Atualizado: 06/11/2026
+ESTADO: P0 — FUNDAÇÃO EM ANDAMENTO
+
+LEIA PRIMEIRO
+Este arquivo é o registro vivo da produção. Ao voltar para o projeto, o assistente deve consultá-lo antes de editar o jogo. PROJETO.txt define a visão e as regras permanentes; este HANDOFF registra o ponto exato de retomada.
+
+0. REGRA DE ARMAZENAMENTO (DECISÃO EXPRESSA DO CRIADOR)
+GitHub cute-3d = SOMENTE PROJETO.txt e HANDOFF.txt na branch main.
+TODO o restante fica no Mac: project.godot, cenas, scripts, addons, modelos, imagens, texturas, saves e backups. Nunca publicar código ou ativos sem nova autorização explícita. O repositório NÃO deve ter README, pasta de documentação, cenas ou addon. O Git local do projeto é separado do repositório remoto de documentação.
+
+1. REFERÊNCIAS
+GitHub: https://github.com/arturcoutinhoescrita-netizen/cute-3d
+Computador: Arturs-Mac-mini.local (Desktop Commander; verificar conexão a cada sessão).
+Pasta Godot: /Volumes/Extreme SSD/MEUS JOGOS/Godot/Cute 3D
+Arquivo Godot: /Volumes/Extreme SSD/MEUS JOGOS/Godot/Cute 3D/project.godot
+Cena principal: res://cenas/principal.tscn
+Plugin Godot MCP local: res://addons/godot_mcp/
+Motor confirmado: Godot 4.7.2.stable, app em /Applications/Godot.app
+Código futuro: GDScript, conforme as necessidades.
+
+2. VISÃO E PERFIL DE TRABALHO
+Jogo novo: RPG 3D estilo cute. Pessoa criadora é iniciante no Godot: explicar onde clicar e qual resultado esperar; programação e tarefas técnicas por Desktop Commander e, quando realmente conectado, Godot MCP.
+Não migrar automaticamente 3D Companion para Cute 3D. A existência de plugins ou projetos anteriores é apenas referência técnica.
+
+3. O QUE JÁ FOI FEITO NO MAC (06/11/2026)
+- Identificado o Godot 4.7.2.stable.
+- Criada pasta independente Cute 3D.
+- Criado project.godot e cenas/principal.tscn.
+- Cena inicial com chão de teste verde (StaticBody3D, malha e colisão), sol, câmera 3D e ambiente/céu claro.
+- Copiado e habilitado o plugin godot_mcp do laboratório anterior.
+- Preservado o laboratório Godot anterior; Cute 3D é projeto independente.
+- Criada documentação local inicial em documentacao/BIBLIA_DO_PROJETO.md (cópia histórica; daqui em diante o HANDOFF remoto é a referência principal).
+- Inicializado Git LOCAL para histórico do projeto no Mac. Não usar seu repositório remoto para enviar arquivos Godot.
+- O editor Godot foi aberto no Mac apontando para a pasta Cute 3D.
+
+4. TESTES COMPROVADOS
+- Godot --headless --editor --quit carregou o novo projeto com saída 0.
+- Log do plugin: '[Godot MCP] Plugin started' e 'Registered 173 commands'.
+- Godot --headless --quit-after 5 executou a cena com saída 0.
+Não comprovados: conexão MCP externa ativa, teste visual da cena, controle de personagem, gameplay real.
+
+5. SITUAÇÃO DO GITHUB
+- O repositório cute-3d foi criado como PÚBLICO em 06/11/2026.
+- Inicialmente foram enviados por engano 74 arquivos do Godot. Posteriormente o criador corrigiu a regra: somente 2 TXT no GitHub.
+- A branch main foi reorganizada para listar apenas PROJETO.txt e HANDOFF.txt.
+- ATENÇÃO: commits antigos com arquivos do jogo podem continuar acessíveis no histórico do GitHub mesmo após retirá-los da branch atual. Se a eliminação completa do histórico for exigida, tratar isso como tarefa de limpeza separada; não alegar que commits antigos foram apagados.
+- O projeto local permanece intacto. Evitar configurar origin do Git local apontando para o repositório de documentação.
+
+6. O QUE FALTA (PRÓXIMO MARCO)
+1) Verificar que o Desktop Commander está conectado e que o Godot abre o projeto Cute 3D correto.
+2) Verificar integração Godot MCP de verdade (instalação do plugin não é o mesmo que servidor conectado).
+3) Confirmar cena inicial visualmente no Godot.
+4) Definir com o criador o primeiro protótipo jogável, em especial personagem e tipo de câmera.
+5) Criar o primeiro controlador de personagem em uma cena de teste, sem sobrescrever cenas autorais.
+
+7. DECISÕES CONFIRMADAS
+- 06/11/2026: jogo novo em Godot.
+- Nome: Cute 3D; gênero: RPG 3D; direção visual: cute.
+- Criador iniciante no Godot; instruções guiadas.
+- Desktop Commander para programação; Godot MCP quando funcional.
+- 06/11/2026: GitHub usado SOMENTE para PROJETO.txt e HANDOFF.txt; todos os arquivos do jogo exclusivamente no computador.
+
+8. DECISÕES AINDA ABERTAS
+Câmera: terceira pessoa, isométrica ou outra?
+Protagonista: aparência, proporção, animações?
+Mundo: áreas pequenas ou mundo maior?
+Mecânicas prioritárias: exploração, combate, missões, construções?
+Plataformas de lançamento? Estilo visual exato e referências?
+Não inventar respostas sem consultar o criador.
+
+9. RITUAL OBRIGATÓRIO DE CONTINUIDADE
+Antes de trabalhar:
+A) Ler este HANDOFF e PROJETO.txt no GitHub.
+B) Conectar o Desktop Commander ao Mac e confirmar caminho do projeto.
+C) Conferir o estado do Git LOCAL (sem enviar código para GitHub).
+D) Identificar a cena/arquivo e montar plano curto de mudança.
+Depois de trabalhar:
+E) Validar em Godot; registrar testes aprovados e pendências com precisão.
+F) Atualizar este HANDOFF com o que mudou, onde mudou, próximos passos.
+G) Se for uma decisão de produto, atualizar também PROJETO.txt.
+H) Na main remota devem continuar SOMENTE os dois TXT.
+
+10. FORMATO DE ENTRADA DE TRABALHO
+Data:
+Objetivo:
+Arquivos locais alterados:
+O que foi implementado:
+Testes realizados:
+Pendências e riscos:
+Próximo passo:
+
+11. REGISTRO DE ALTERAÇÕES
+06/11/2026 — Fundação: projeto Godot local inicial, plugin MCP e cena principal; inicialização headless aprovada, visual e comunicação MCP pendentes.
+06/11/2026 — Organização: documentação central no GitHub; conteúdo do jogo deve permanecer apenas no Mac; branch main contendo somente dois TXT. 

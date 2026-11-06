@@ -1,0 +1,41 @@
+CUTE 3D — DOCUMENTO DO PROJETO
+Atualizado: 06/11/2026
+
+1. VISÃO
+Cute 3D é um futuro jogo de RPG em 3D, de estética cute (fofa e estilizada), desenvolvido no Godot. A direção criativa e as escolhas de gameplay pertencem à pessoa criadora; ChatGPT colabora na programação, organização, testes e documentação. A pessoa criadora está começando no Godot: explicar os passos de modo simples, sem exigir conhecimento prévio.
+
+2. FERRAMENTAS
+Motor instalado e verificado: Godot 4.7.2.stable.
+Programação principal: GDScript.
+Computador de desenvolvimento: Arturs-Mac-mini.local, acessível pelo Remote Desktop Commander.
+Plugin Godot MCP: instalado no projeto local e inicializado em teste; a conexão externa em tempo real ainda não foi comprovada.
+GitHub: https://github.com/arturcoutinhoescrita-netizen/cute-3d
+
+3. ONDE ESTÁ O JOGO
+O projeto executável, arquivos do Godot, cenas, scripts, plugins, modelos, texturas e outros recursos ficam EXCLUSIVAMENTE no Mac:
+ /Volumes/Extreme SSD/MEUS JOGOS/Godot/Cute 3D
+Cena inicial local: res://cenas/principal.tscn
+Arquivo local de configuração: project.godot
+
+4. REGRA ABSOLUTA DO GITHUB
+Este repositório é apenas uma central de documentação e continuidade.
+Na branch main, manter SOMENTE dois arquivos:
+ - PROJETO.txt (este documento: identidade, escopo, decisões gerais);
+ - HANDOFF.txt (estado atualizado, trabalho realizado, testes e próximo passo).
+NÃO publicar código-fonte, cenas, recursos, projetos Godot, backups, plugins ou qualquer outro arquivo. NÃO sincronizar a pasta local do jogo com este repositório. Atualizar somente esses dois TXT usando a integração GitHub. O Git local do projeto é independente.
+
+5. DIREÇÃO E ESCOPO
+Confirmado: RPG 3D com estilo cute.
+Ainda NÃO definidos: tipo de câmera, protagonista, cenário, história, combate, inventário, missões, plataformas-alvo e mecânicas específicas. Não presumir características de protótipos anteriores.
+
+6. ETAPAS PRELIMINARES
+P0 — Fundação: projeto Godot local, cena inicial, ferramentas e documentação. Em andamento.
+P1 — Primeiro protótipo jogável: movimento e câmera de personagem, após decisões criativas.
+P2 — Cenário cute: terreno, vegetação e direção artística.
+P3 — Mecânicas de RPG: escopo a definir.
+P4 — Progressão, história, interface e conteúdo: escopo a definir.
+
+7. COMO CONTINUAR
+Ao iniciar outra sessão, ler primeiro HANDOFF.txt, depois este arquivo. Inspecionar o projeto local via Desktop Commander e confirmar o estado real do Godot antes de alterar qualquer coisa. Após cada avanço, atualizar HANDOFF.txt e, se houver mudança de escopo, também PROJETO.txt.
+
+Última decisão de organização: o GitHub guarda apenas PROJETO.txt e HANDOFF.txt; tudo o mais permanece no computador.

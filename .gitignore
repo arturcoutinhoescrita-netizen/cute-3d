@@ -1,8 +1,0 @@
-.godot/
-.DS_Store
-*.tmp
-*.bak
-*.log
-# Nunca versionar dados privados ou credenciais
-.env
-.env.*
