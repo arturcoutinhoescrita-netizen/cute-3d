@@ -25,17 +25,28 @@ Na branch main, manter SOMENTE dois arquivos:
 NÃO publicar código-fonte, cenas, recursos, projetos Godot, backups, plugins ou qualquer outro arquivo. NÃO sincronizar a pasta local do jogo com este repositório. Atualizar somente esses dois TXT usando a integração GitHub. O Git local do projeto é independente.
 
 5. DIREÇÃO E ESCOPO
-Confirmado: RPG 3D com estilo cute.
-Ainda NÃO definidos: tipo de câmera, protagonista, cenário, história, combate, inventário, missões, plataformas-alvo e mecânicas específicas. Não presumir características de protótipos anteriores.
+Confirmado: RPG 3D com estilo cute; personagem principal do protótipo é o Carteiro, com modelo 3D existente nas pastas de recursos fornecidas pela pessoa criadora. As animações disponíveis para o personagem são repouso, caminhada e corrida.
+Protótipo técnico atual: câmera em terceira pessoa atrás do personagem, movimentação por WASD/setas, Shift para correr, Espaço para pular e arrastar botão direito do mouse para girar a câmera. A câmera e controles podem ser revistos pelo criador; não são uma decisão artística definitiva.
+Ainda NÃO definidos: cenário definitivo, história, combate, inventário, missões, plataformas-alvo e demais mecânicas. Não presumir características de protótipos anteriores.
 
 6. ETAPAS PRELIMINARES
-P0 — Fundação: projeto Godot local, cena inicial, ferramentas e documentação. Em andamento.
-P1 — Primeiro protótipo jogável: movimento e câmera de personagem, após decisões criativas.
+P0 — Fundação: projeto Godot local, cena inicial, ferramentas e documentação. Base preparada; falta conferir integração MCP externa.
+P1 — Primeiro protótipo jogável: Carteiro com repouso, caminhada, corrida, salto simples e câmera de terceira pessoa. Implementado e testado localmente; resta aprovação visual/jogabilidade pela pessoa criadora.
 P2 — Cenário cute: terreno, vegetação e direção artística.
 P3 — Mecânicas de RPG: escopo a definir.
 P4 — Progressão, história, interface e conteúdo: escopo a definir.
 
 7. COMO CONTINUAR
 Ao iniciar outra sessão, ler primeiro HANDOFF.txt, depois este arquivo. Inspecionar o projeto local via Desktop Commander e confirmar o estado real do Godot antes de alterar qualquer coisa. Após cada avanço, atualizar HANDOFF.txt e, se houver mudança de escopo, também PROJETO.txt.
+
+8. PERSONAGEM PRINCIPAL NO PROTÓTIPO
+Nome usado: Carteiro.
+Origem de seus arquivos autorais: /Volumes/Extreme SSD/MEUS JOGOS/IMAGENS RPG/Photoshop tiles/3d/Carteiro
+Modelo animado gerado localmente em assets/personagens/carteiro/carteiro_animado.glb (não está no GitHub).
+Animações identificadas: Dwarf Idle.fbx (Parado), Walking.fbx (Andar) e Running.fbx (Correr), compatíveis com o esqueleto do personagem. Arquivos originais preservados.
+Cena local do Carteiro: res://cenas/carteiro.tscn
+Controle: res://scripts/carteiro_controle.gd
+Teste local: res://testes/teste_carteiro.gd
+A câmera em terceira pessoa é provisória, criada para testar movimento.
 
 Última decisão de organização: o GitHub guarda apenas PROJETO.txt e HANDOFF.txt; tudo o mais permanece no computador.
